@@ -86,8 +86,8 @@ def cherry_pick_by_clip(pil_images, text, ruclip, ruclip_processor, device='cpu'
     top_scores = [x['cosine'] for x in items]
     return top_pil_images, top_scores
 
-
-def show(pil_images, nrow=4, size=14, save_dir=None, show=True):
+# Set the path
+def show(pil_images, nrow=4, size=14, save_dir='./images_yt', show=True):
     """
     :param pil_images: list of images in PIL
     :param nrow: number of rows
