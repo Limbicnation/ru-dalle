@@ -9,8 +9,8 @@ import os
 text = 'The Entity from the 4th dimension'
 image_save_dir = 'pics'
 image_prefix = 'ugliest-mole'
-start_seed = 73156
-images_per_res = 10
+start_seed = 74129
+images_per_res = 500
 seed_batches = 4
 batch_size = 8
 upscale_multiplier = '2x'
