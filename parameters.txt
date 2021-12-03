@@ -1,0 +1,5 @@
+start_seed = 65536
+images_pers_res = 16
+seed_batches = 300
+batch_size = 8
+upscale_multiplier = '2x'
