@@ -7,11 +7,11 @@ import os
 # What are you creating
 
 text = 'The Entity from the 4th dimension'
-image_save_dir = 'pics'
+#image_save_dir = '/home/ws-ml/ML-Images/ru-dalle/pics'
 image_prefix = 'ugliest-mole'
-start_seed = 74129
-images_per_res = 500
-seed_batches = 4
+start_seed = 45371
+images_per_res = 5
+seed_batches = 1
 batch_size = 8
 upscale_multiplier = '2x'
 
@@ -21,8 +21,8 @@ cache_dir = '/home/ws-ml/ML-Images/ru-dalle/cache'
 # run
 translated = GoogleTranslator(source='auto', target='ru').translate(text)
 
-if not os.path.exists(image_save_dir):
-    os.mkdir(image_save_dir)
+#if not os.path.exists(image_save_dir):
+#    os.mkdir(image_save_dir) 
 
 # prepare models:
 device = 'cuda'
@@ -33,7 +33,8 @@ vae = get_vae(dwt=True).to(device)  # for stable generations you should use dwt=
 ruclip, ruclip_processor = get_ruclip('ruclip-vit-base-patch32-v5')
 ruclip = ruclip.to(device)
 
-#text = 'Красивые холмы Хэмптона и Ньюпорта'
+# Text to generate Images
+text = 'ядерные взрывы'
 
 #Loop
 for seed in range (start_seed, (start_seed+seed_batches)):
