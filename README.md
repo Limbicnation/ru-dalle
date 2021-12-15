@@ -2,12 +2,13 @@
 ### Generate images from texts
 
 [![Apache license](https://img.shields.io/badge/License-Apache-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0)
+[![Downloads](https://pepy.tech/badge/rudalle)](https://pepy.tech/project/rudalle)
 [![Coverage Status](https://codecov.io/gh/sberbank-ai/ru-dalle/branch/master/graphs/badge.svg)](https://codecov.io/gh/sberbank-ai/ru-dalle)
 [![pipeline](https://gitlab.com/shonenkov/ru-dalle/badges/master/pipeline.svg)](https://gitlab.com/shonenkov/ru-dalle/-/pipelines)
 [![pre-commit.ci status](https://results.pre-commit.ci/badge/github/sberbank-ai/ru-dalle/master.svg)](https://results.pre-commit.ci/latest/github/sberbank-ai/ru-dalle/master)
 
 ```
-pip install rudalle==0.3.0
+pip install rudalle==0.4.0
 ```
 ### 🤗 HF Models:
 [ruDALL-E Malevich (XL)](https://huggingface.co/sberbank-ai/rudalle-Malevich) \
@@ -104,5 +105,6 @@ skyes = [red_sky, sunny_sky, cloudy_sky, night_sky]
 
 ### Social Media
 
+[![](./pics/habr_eng.svg)](https://habr.com/ru/company/sberbank/blog/589673/)
 [![](./pics/habr.svg)](https://habr.com/ru/company/sberdevices/blog/586926/)
 [![](https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://instagram.com/rudalle.official)
