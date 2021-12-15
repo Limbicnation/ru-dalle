@@ -9,13 +9,13 @@ import os
 text = 'The Entity from the 4th dimension'
 #image_save_dir = '/home/ws-ml/ML-Images/ru-dalle/pics'
 image_prefix = 'ugliest-mole'
-start_seed = 45371
-images_per_res = 5
+start_seed = 68173
+images_per_res = 200
 seed_batches = 1
 batch_size = 8
 upscale_multiplier = '2x'
 
-#Cache directorry
+#Cache directorrytt[]
 cache_dir = '/home/ws-ml/ML-Images/ru-dalle/cache'
 
 # run
@@ -34,7 +34,7 @@ ruclip, ruclip_processor = get_ruclip('ruclip-vit-base-patch32-v5')
 ruclip = ruclip.to(device)
 
 # Text to generate Images
-text = 'ядерные взрывы'
+text = 'ядерный взрыв'
 
 #Loop
 for seed in range (start_seed, (start_seed+seed_batches)):
