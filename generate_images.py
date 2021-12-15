@@ -10,7 +10,7 @@ text = 'The Entity from the 4th dimension'
 #image_save_dir = '/home/ws-ml/ML-Images/ru-dalle/pics'
 image_prefix = 'ugliest-mole'
 start_seed = 68173
-images_per_res = 200
+images_per_res = 50
 seed_batches = 1
 batch_size = 8
 upscale_multiplier = '2x'
@@ -53,8 +53,8 @@ for seed in range (start_seed, (start_seed+seed_batches)):
         (1024, 0.98, images_per_res),
         (512, 0.97, images_per_res),
         (384, 0.96, images_per_res),
-        (256, 0.95, images_per_res),
-        (128, 0.95, images_per_res),
+        (256, 0.96, images_per_res),
+        (128, 0.96, images_per_res),
         
     ]:_pil_images, _scores = generate_images(text, tokenizer, dalle, vae, top_k=top_k, images_num=images_num, top_p=top_p)
     pil_images += _pil_images
