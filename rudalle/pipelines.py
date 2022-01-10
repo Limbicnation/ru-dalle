@@ -87,7 +87,7 @@ def cherry_pick_by_clip(pil_images, text, ruclip, ruclip_processor, device='cpu'
     return top_pil_images, top_scores
 
 # Set the path
-def show(pil_images, nrow=4, size=14, save_dir='/home/ws-ml/ML-Images/ru-dalle/portrait', show=True):
+def show(pil_images, nrow=4, size=14, save_dir='/media/ws-ml/Data-ml1/ML_Images/ru-dalle/cyborg_faces3', show=True):
 
     """
     :param pil_images: list of images in PIL

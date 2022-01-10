@@ -9,8 +9,8 @@ import os
 text = 'The Entity from the 4th dimension'
 #image_save_dir = '/home/ws-ml/ML-Images/ru-dalle/pics'
 image_prefix = 'ugliest-mole'
-start_seed = 32374713
-images_per_res = 5
+start_seed = 32124713
+images_per_res = 5 #Total number of Images generated
 seed_batches = 1
 batch_size = 8
 upscale_multiplier = '2x'
@@ -34,7 +34,7 @@ ruclip, ruclip_processor = get_ruclip('ruclip-vit-base-patch32-v5')
 ruclip = ruclip.to(device)
 
 # Text to generate Images
-text = 'Спрайт (молния)'
+text = 'лицо киберборга'
 #text = 'Портрет красивых женщин' 
 
 
