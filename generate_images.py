@@ -13,10 +13,10 @@ start_seed = 32124713
 images_per_res = 5 #Total number of Images generated
 seed_batches = 1
 batch_size = 8
-upscale_multiplier = '2x'
+#upscale_multiplier = '2x'
 
 #Cache directorrytt[]
-cache_dir = '/home/ws-ml/ML-Images/ru-dalle/cache'
+cache_dir = '/media/ws-ml/Data-ml1/ML_Images/ru-dalle/cache'
 
 # run
 translated = GoogleTranslator(source='auto', target='ru').translate(text)
@@ -29,7 +29,7 @@ device = 'cuda'
 dalle = get_rudalle_model('Malevich', pretrained=True, fp16=True, device=device, cache_dir=cache_dir)
 realesrgan = get_realesrgan('x2', device=device) # x2/x4/x8
 tokenizer = get_tokenizer()
-vae = get_vae(dwt=True).to(device)  # for stable generations you should use dwt=False
+vae = get_vae(dwt=False).to(device)  # for stable generations you should use dwt=False 
 ruclip, ruclip_processor = get_ruclip('ruclip-vit-base-patch32-v5')
 ruclip = ruclip.to(device)
 
