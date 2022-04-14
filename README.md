@@ -98,17 +98,10 @@ skyes = [red_sky, sunny_sky, cloudy_sky, night_sky]
 
 ### Supported by
 
-[<img src="https://raw.githubusercontent.com/sberbank-ai/ru-dolph/master/pics/logo/sberai-logo.png" height="115"/>](https://github.com/sberbank-ai) \
-[<img src="https://raw.githubusercontent.com/sberbank-ai/ru-dolph/master/pics/logo/sberdevices-logo.png" height="40"/>](https://sberdevices.ru)
-
-[<img src="https://raw.githubusercontent.com/sberbank-ai/ru-dolph/master/pics/logo/sbercloud-logo.png" height="80"/>](https://sbercloud.ru/) \
 [<img src="https://raw.githubusercontent.com/sberbank-ai/ru-dolph/master/pics/logo/airi-logo.png" height="50"/>](https://airi.net)
-
 
 
 ### Social Media
 
 [![](./pics/habr_eng.svg)](https://habr.com/ru/company/sberbank/blog/589673/)
 [![](./pics/habr.svg)](https://habr.com/ru/company/sberdevices/blog/586926/)
-[![](https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://instagram.com/rudalle.official)
-
