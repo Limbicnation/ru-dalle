@@ -24,12 +24,16 @@ class DalleModel(torch.nn.Module):
                  loss_img_weight=7,
                  cogview_sandwich_layernorm=False,
                  cogview_pb_relax=False,
-                 cogview_layernorm_prescale=False,
-                 custom_relax=False,
                  is_bool_mask=True,
                  mlp_activation='gelu_jit',
+                 init_layer_func=None,
                  hf_version='v3'):
         super(DalleModel, self).__init__()
+        if init_layer_func is None:
+            def init_layer_func(x, prefix=None): return x
+            init_method = init_method_normal(std=0.02)
+        else:
+            init_method = None
         self.device = device
         self.image_tokens_per_dim = image_tokens_per_dim
         self.image_seq_length = image_tokens_per_dim ** 2
@@ -41,26 +45,29 @@ class DalleModel(torch.nn.Module):
 
         self.hf_version = hf_version
 
-        init_method = init_method_normal(std=0.02)
-
-        self.text_embeddings = torch.nn.Embedding(vocab_size, hidden_size)
-        self.image_embeddings = torch.nn.Embedding(image_vocab_size, hidden_size)
+        self.text_embeddings = init_layer_func(torch.nn.Embedding(vocab_size, hidden_size), prefix='text_embeddings.')
+        self.image_embeddings = init_layer_func(torch.nn.Embedding(image_vocab_size, hidden_size),
+                                                prefix='image_embeddings.')
 
         # Position embedding (serial).
-        self.text_pos_embeddings = torch.nn.Embedding(text_seq_length + 1, hidden_size)
-        self.image_row_embeddings = torch.nn.Embedding(image_tokens_per_dim, hidden_size)
-        self.image_col_embeddings = torch.nn.Embedding(image_tokens_per_dim, hidden_size)
-        init_method(self.text_pos_embeddings.weight)
-        init_method(self.image_row_embeddings.weight)
-        init_method(self.image_col_embeddings.weight)
+        self.text_pos_embeddings = init_layer_func(torch.nn.Embedding(text_seq_length + 1, hidden_size),
+                                                   prefix='text_pos_embeddings.')
+        self.image_row_embeddings = init_layer_func(torch.nn.Embedding(image_tokens_per_dim, hidden_size),
+                                                    prefix='image_row_embeddings.')
+        self.image_col_embeddings = init_layer_func(torch.nn.Embedding(image_tokens_per_dim, hidden_size),
+                                                    prefix='image_col_embeddings.')
+        if init_method is not None:
+            init_method(self.text_pos_embeddings.weight)
+            init_method(self.image_row_embeddings.weight)
+            init_method(self.image_col_embeddings.weight)
 
-        self.to_logits = torch.nn.Sequential(
+        self.to_logits = init_layer_func(torch.nn.Sequential(
             torch.nn.LayerNorm(hidden_size),
             torch.nn.Linear(hidden_size, self.total_vocab_size),
-        )
+        ), prefix='to_logits.')
 
         # Embeddings dropout
-        self.embedding_dropout = torch.nn.Dropout(embedding_dropout_prob)
+        self.embedding_dropout = init_layer_func(torch.nn.Dropout(embedding_dropout_prob), prefix='embedding_dropout.')
 
         # Transformer
         self.transformer = DalleTransformer(
@@ -73,11 +80,10 @@ class DalleModel(torch.nn.Module):
             image_tokens_per_dim=image_tokens_per_dim,
             cogview_sandwich_layernorm=cogview_sandwich_layernorm,
             cogview_pb_relax=cogview_pb_relax,
-            cogview_layernorm_prescale=cogview_layernorm_prescale,
-            custom_relax=custom_relax,
             mlp_activation=mlp_activation,
             is_bool_mask=is_bool_mask,
             hf_version=self.hf_version,
+            init_layer_func=init_layer_func,
         )
 
     def get_param(self, item):
@@ -110,13 +116,13 @@ class DalleModel(torch.nn.Module):
         if self.hf_version == 'v2':
             # some hardcode :)
             text = F.pad(text, (1, 0), value=2)
-        text_pos = self.text_pos_embeddings(torch.arange(text.shape[1], device=self.device))
-        text_embeddings = self.text_embeddings(text) + text_pos
+        text_embeddings = self.text_embeddings(text) + \
+            self.text_pos_embeddings(torch.arange(text.shape[1], device=self.device))
         image_input_ids = input_ids[:, self.text_seq_length:]
 
         if exists(image_input_ids) and not is_empty(image_input_ids):
-            img_pos = self.get_image_pos_embeddings(image_input_ids, past_length=0)
-            image_embeddings = self.image_embeddings(image_input_ids) + img_pos
+            image_embeddings = self.image_embeddings(image_input_ids) + \
+                self.get_image_pos_embeddings(image_input_ids, past_length=0)
             embeddings = torch.cat((text_embeddings, image_embeddings), dim=1)
         else:
             embeddings = text_embeddings

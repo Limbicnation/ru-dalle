@@ -8,13 +8,13 @@
 [![pre-commit.ci status](https://results.pre-commit.ci/badge/github/sberbank-ai/ru-dalle/master.svg)](https://results.pre-commit.ci/latest/github/sberbank-ai/ru-dalle/master)
 
 ```
-pip install rudalle==1.1.0rc0
+pip install rudalle==1.1.3
 ```
 ### 🤗 HF Models:
 [ruDALL-E Malevich (XL)](https://huggingface.co/sberbank-ai/rudalle-Malevich) \
 [ruDALL-E Emojich (XL)](https://huggingface.co/sberbank-ai/rudalle-Emojich) (readme [here](https://github.com/sberbank-ai/ru-dalle/blob/master/Emojich.md)) \
-[ruDALL-E Surrealist (XL)](https://huggingface.co/shonenkov-AI/rudalle-xl-surrealist)
-
+[ruDALL-E Surrealist (XL)](https://huggingface.co/shonenkov-AI/rudalle-xl-surrealist) \
+ruDALL-E Kandinsky (XXL) (soon)
 
 ### Minimal Example:
 
@@ -87,10 +87,30 @@ skyes = [red_sky, sunny_sky, cloudy_sky, night_sky]
 ```
 ![](pics/malevich/russian-temple-image-prompt.png)
 
+
+### VideoDALL-E | ru[CogVideo](https://github.com/THUDM/CogVideo) by [@cene555](https://github.com/cene555)
+**Video generation example**
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1A_3Oe9r9DP3Ayd6DPvqKHIKlwNfLhVP5?usp=sharing)
+**Finetuning example**
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1R_joYWlvToA24tsa9BFYa2D6ffiMtyVy?usp=sharing)
+
+
 ### Aspect ratio images [**-->NEW<--**](https://github.com/shonenkov-AI/rudalle-aspect-ratio)
 
 ![](https://raw.githubusercontent.com/shonenkov-AI/rudalle-aspect-ratio/main/pics/h_example.jpg)
 
+
+### [Kandinsky 12B](https://github.com/ai-forever/ru-dalle/blob/master/jupyters/Kandinsky-12b-A100.ipynb)
+
+Request access: [Here](https://docs.google.com/forms/d/e/1FAIpQLSdYCT6LKDWgWGkd0Lq_sMLe2wZDZSkMUuCQx4qdXUnd6SrhvA/viewform)
+
+`роботы акварелью в стиле ван гога`
+![](./pics/kandinsky/example-robots.png)
+
+[![](./pics/habr_eng.svg)](https://habr.com/ru/company/sberbank/blog/671210/)
+
+![](./pics/kandinsky/loss.jpg)
+`FID = 15.4 (COCO Valid)`
 
 ### 🚀 Contributors 🚀
 
